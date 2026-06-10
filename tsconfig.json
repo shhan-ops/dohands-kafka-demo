@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@lib/kafka-config": ["libs/kafka-config/src"],
+      "@lib/kafka-config/*": ["libs/kafka-config/src/*"],
+      "@lib/logger": ["libs/logger/src"],
+      "@lib/logger/*": ["libs/logger/src/*"],
+      "@lib/schema-registry": ["libs/schema-registry/src"],
+      "@lib/schema-registry/*": ["libs/schema-registry/src/*"],
+      "@app/producer": ["apps/producer/src"],
+      "@app/producer/*": ["apps/producer/src/*"],
+      "@app/consumer-a": ["apps/consumer-a/src"],
+      "@app/consumer-a/*": ["apps/consumer-a/src/*"],
+      "@app/consumer-b": ["apps/consumer-b/src"],
+      "@app/consumer-b/*": ["apps/consumer-b/src/*"]
+    }
+  }
+}

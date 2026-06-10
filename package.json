@@ -1,0 +1,44 @@
+{
+  "name": "dohands-kafka-demo",
+  "version": "1.0.0",
+  "description": "Kafka 학습용 데모 - @nestjs/microservices 기반",
+  "private": true,
+  "scripts": {
+    "start:producer": "nest start producer --watch",
+    "start:consumer-a": "nest start consumer-a --watch",
+    "start:consumer-b": "nest start consumer-b --watch",
+    "build:producer": "nest build producer",
+    "build:consumer-a": "nest build consumer-a",
+    "build": "nest build producer && nest build consumer-a && nest build consumer-b",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down -v",
+    "docker:logs": "docker-compose logs -f kafka"
+  },
+  "dependencies": {
+    "@kafkajs/confluent-schema-registry": "^4.1.0",
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/microservices": "^10.0.0",
+    "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/swagger": "^8.0.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "kafkajs": "^2.2.4",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.1",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^10.0.0",
+    "@nestjs/schematics": "^10.0.0",
+    "@nestjs/testing": "^10.0.0",
+    "@types/node": "^20.3.1",
+    "@types/uuid": "^10.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.3"
+  },
+  "packageManager": "pnpm@9.7.0"
+}
