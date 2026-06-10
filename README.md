@@ -25,6 +25,7 @@ pnpm start:consumer-b
 
 - `.env` 파일은 레포 루트에 두면 됩니다.
 - 예시는 [`.env.example`](/Users/shhan/Downloads/dohands-kafka-demo/.env.example) 참고.
+- consumer group 설명은 [docs/kafka-consumer-group.md](/Users/shhan/Downloads/dohands-kafka-demo/docs/kafka-consumer-group.md) 참고.
 - **Swagger UI**: `http://localhost:3000/docs`
 - **HTTP 파일**: `http/producer.http` (REST Client extension 필요)
 
@@ -45,7 +46,7 @@ pnpm start:consumer-b
 ### Consumer Group
 같은 `groupId`를 가진 consumer 인스턴스의 집합. 파티션이 그룹 멤버들에게 분산됨.
 groupId가 다른 두 그룹은 같은 토픽을 **독립적으로** 구독함.
-→ producer가 메시지 1개를 보내면 `group-a`, `group-b` 모두 각자 수신.
+→ producer가 메시지 1개를 보내면 같은 그룹 안에서는 한 consumer만 처리하고, 다른 그룹이 있으면 그 그룹도 별도로 수신함.
 
 ### Schema Registry
 Kafka 메시지의 스키마(Avro)를 중앙에서 관리. 스키마에 맞지 않는 메시지는 인코딩 단계에서 차단됨.
@@ -89,9 +90,9 @@ handle(@Payload() data: unknown) { ... }
      ▼
 [Kafka - order.created topic]
      │
-     ├──▶ [consumer-a | dohands-group-a]  AvroKafkaDeserializer → @EventPattern 수신
+     ├──▶ [consumer-a | dohands-group-shared]  AvroKafkaDeserializer → @EventPattern 수신
      │
-     └──▶ [consumer-b | dohands-group-b]  AvroKafkaDeserializer → @EventPattern 수신
+     └──▶ [consumer-b | dohands-group-shared]  AvroKafkaDeserializer → @EventPattern 수신
 ```
 
 ---
@@ -101,7 +102,7 @@ handle(@Payload() data: unknown) { ... }
 `http://localhost:8080`
 
 - **Topics** — 토픽별 메시지 및 파티션 확인
-- **Consumer Groups** — `dohands-group-a`, `dohands-group-b` 오프셋 확인
+- **Consumer Groups** — `dohands-group-shared` 오프셋 확인
 - **Topics > Actions > Purge Topic** — 쌓인 메시지 초기화
 
 ---
@@ -118,10 +119,10 @@ dohands-kafka-demo/
 │   │   └── src/
 │   │       ├── producer.service.ts
 │   │       └── producer.controller.ts
-│   ├── consumer-a/                 # Kafka Consumer (dohands-group-a)
+│   ├── consumer-a/                 # Kafka Consumer (dohands-group-shared)
 │   │   └── src/
 │   │       └── consumer.controller.ts
-│   └── consumer-b/                 # Kafka Consumer (dohands-group-b)
+│   └── consumer-b/                 # Kafka Consumer (dohands-group-shared)
 │       └── src/
 │           └── consumer.controller.ts
 └── libs/

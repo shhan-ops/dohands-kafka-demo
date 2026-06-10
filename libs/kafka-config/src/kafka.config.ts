@@ -7,8 +7,8 @@ export const KAFKA_BROKER = process.env.KAFKA_BROKER ?? 'localhost:9092';
 // 같은 그룹 안에서는 파티션이 분산되어 메시지가 한 번만 처리됨
 // 같은 토픽을 다른 그룹이 구독하면 그룹마다 별도로 수신됨
 export const CONSUMER_GROUPS = {
-  A: 'dohands-group-a',
-  B: 'dohands-group-b',
+  A: 'dohands-group-shared',
+  B: 'dohands-group-shared',
 } as const;
 
 // ClientsModule.register()에 사용 — Producer 클라이언트 설정
