@@ -3,7 +3,7 @@ import { buildOrderId, commonChecks, postJson } from './common.js';
 
 export const options = {
   vus: Number(__ENV.VUS || 10),
-  duration: __ENV.DURATION || '30s',
+  duration: __ENV.DURATION || '60s',
 };
 
 export default function () {
