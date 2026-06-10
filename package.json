@@ -12,7 +12,10 @@
     "build": "nest build producer && nest build consumer-a && nest build consumer-b",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down -v",
-    "docker:logs": "docker-compose logs -f kafka"
+    "docker:logs": "docker-compose logs -f kafka",
+    "k6:order-created": "k6 run k6/order-created.js",
+    "k6:order-processed": "k6 run k6/order-processed.js",
+    "k6:shipping-requested": "k6 run k6/shipping-requested.js"
   },
   "dependencies": {
     "@kafkajs/confluent-schema-registry": "^4.1.0",

@@ -29,6 +29,31 @@ pnpm start:consumer-b
 - **Swagger UI**: `http://localhost:3000/docs`
 - **HTTP 파일**: `http/producer.http` (REST Client extension 필요)
 
+## k6 부하 테스트
+
+테스트 전에 아래를 먼저 실행하세요.
+
+```shell
+pnpm docker:up
+pnpm start:producer
+```
+
+환경 변수로 기본값을 바꿀 수 있습니다.
+
+```shell
+PRODUCER_BASE_URL=http://localhost:3000 VUS=20 DURATION=1m pnpm k6:order-created
+```
+
+자주 쓰는 명령:
+
+```shell
+pnpm k6:order-created
+pnpm k6:order-processed
+pnpm k6:shipping-requested
+```
+
+k6 스크립트는 [`k6/`](/Users/shhan/Downloads/dohands-kafka-demo/k6) 아래에 있습니다.
+
 ---
 
 ## 기본 개념
